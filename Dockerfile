@@ -1,4 +1,4 @@
-FROM daocloud.io/golang:1.4
+FROM golang:1.4.3
 
 RUN mkdir -p $GOPATH/src/sample-web
 ADD . $GOPATH/src/sample-web
