@@ -43,11 +43,15 @@ func main() {
     db := os.Getenv("MYSQL_DATABASE")
 
     if len(address) == 0 || len(port) == 0 || len(user) == 0 || len(passwd) == 0 || len(db) == 0 {
-        log.Fatal("Invalid mysql env")
+        log.Fatalln("Invalid mysql env")
+    }
+
+    if err := connect(address, port, user, passwd, db); err != nil {
+        log.Fatalln(err)
     }
 
     http.HandleFunc("/hello", hello)
     http.HandleFunc("/env", env)
 
-	log.Fatal(http.ListenAndServe(":8000", nil))
+    log.Fatal(http.ListenAndServe(":8000", nil))
 }
